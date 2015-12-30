@@ -1,0 +1,25 @@
+{
+  "name": "mantis-grid",
+  "version": "0.0.1",
+  "description": "The definitive responsive grid system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mantisjs/mantis-grid.git"
+  },
+  "keywords": [
+    "grid",
+    "stylus",
+    "flexbox",
+    "css3"
+  ],
+  "author": "Acauã Montiel <contato@acauamontiel.com.br>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mantisjs/mantis-grid/issues"
+  },
+  "homepage": "https://github.com/mantisjs/mantis-grid"
+}

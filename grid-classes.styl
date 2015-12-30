@@ -1,0 +1,62 @@
+generate-grid($width = $grid-width, $fluid = $grid-fluid)
+	.{$grid-classname}
+		grid($width, $fluid)
+
+		&{$grid-separator}row
+			flex-direction row
+
+		&{$grid-separator}row-reverse
+			flex-direction row-reverse
+
+		&{$grid-separator}column
+			flex-direction column
+
+		&{$grid-separator}column-reverse
+			flex-direction column-reverse
+
+		&{$grid-separator}align-start
+			align-items flex-start
+
+		&{$grid-separator}align-end
+			align-items flex-end
+
+		&{$grid-separator}align-center
+			align-items center
+
+		&{$grid-separator}align-stretch
+			align-items stretch
+
+		&{$grid-separator}justify-start
+			justify-content flex-start
+
+		&{$grid-separator}justify-end
+			justify-content flex-end
+
+		&{$grid-separator}justify-center
+			justify-content center
+
+generate-grid-items($gutter = false, $prefix = '', $media-querie = '(min-width: 0)')
+	unless $prefix is ''
+		$prefix = '-' + $prefix
+
+	@media $media-querie
+		[class*={$grid-item-classname}{$prefix}]
+			box-sizing border-box
+
+			if $gutter
+				padding-left $gutter
+				padding-right $gutter
+
+		for i in (1 .. $grid-columns)
+			.{$grid-item-classname}{$prefix}{$grid-separator}{i}
+				grid-item(i)
+
+grid-init()
+	generate-grid()
+	for i in $grid-breakpoints
+		if i.media-querie is null
+			generate-grid-items(i.gutter, i.prefix)
+		else
+			generate-grid-items(i.gutter, i.prefix, i.media-querie)
+
+grid-init()

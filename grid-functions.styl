@@ -1,0 +1,32 @@
+$grid-classname ?= 'grid'
+$grid-item-classname ?= $grid-classname + '__item'
+$grid-separator ?= '--'
+$grid-columns ?= 12
+$grid-width ?= 100%
+$grid-fluid ?= true
+$grid-breakpoints ?= {
+	gutter: 10px,
+	prefix: 'mb'
+}, {
+	prefix: 'tb',
+	media-querie: "only screen and (min-width: 640px)"
+}, {
+	gutter: 20px,
+	prefix: 'dt',
+	media-querie: "only screen and (min-width: 960px)"
+}
+
+grid($width = $grid-width, $fluid = $grid-fluid)
+	display flex
+	flex-wrap wrap
+	margin-left auto
+	margin-right auto
+
+	if $fluid
+		width auto
+		max-width $width
+	else
+		width $width
+
+grid-item(i)
+	flex-basis unit(i * (100 / $grid-columns), '%')
