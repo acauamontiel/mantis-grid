@@ -35,6 +35,12 @@ generate-grid($width = $grid-width, $fluid = $grid-fluid)
 		&{$grid-separator}justify-center
 			justify-content center
 
+		&{$grid-separator}justify-around
+			justify-content space-around
+
+		&{$grid-separator}justify-between
+			justify-content space-between
+
 generate-grid-items($gutter = false, $prefix = '', $media-querie = '(min-width: 0)')
 	unless $prefix is ''
 		$prefix = '-' + $prefix
@@ -50,6 +56,10 @@ generate-grid-items($gutter = false, $prefix = '', $media-querie = '(min-width: 
 		for i in (1 .. $grid-columns)
 			.{$grid-item-classname}{$prefix}{$grid-separator}{i}
 				grid-item(i)
+
+			unless (i == $grid-columns)
+				.{$grid-offset-classname}{$prefix}{$grid-separator}{i}
+					grid-offset(i)
 
 grid-init()
 	generate-grid()

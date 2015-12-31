@@ -1,5 +1,6 @@
 $grid-classname ?= 'grid'
 $grid-item-classname ?= $grid-classname + '__item'
+$grid-offset-classname ?= $grid-classname + '__offset'
 $grid-separator ?= '--'
 $grid-columns ?= 12
 $grid-width ?= 100%
@@ -21,12 +22,16 @@ grid($width = $grid-width, $fluid = $grid-fluid)
 	flex-wrap wrap
 	margin-left auto
 	margin-right auto
+	box-sizing border-box
 
 	if $fluid
-		width auto
+		width 100%
 		max-width $width
 	else
 		width $width
 
 grid-item(i)
 	flex-basis unit(i * (100 / $grid-columns), '%')
+
+grid-offset(i)
+	margin-left unit(i * (100 / $grid-columns), '%')
