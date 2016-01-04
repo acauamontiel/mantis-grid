@@ -50,6 +50,12 @@ generate-grid-items($gutter = false, $prefix = '', $media-querie = '(min-width: 
 			flex-grow 1
 			flex-basis 0
 
+			&--first
+				order -1
+
+			&--last
+				order 1
+
 		[class*={$grid-item-classname}{$prefix}]
 			box-sizing border-box
 
