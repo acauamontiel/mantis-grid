@@ -46,6 +46,10 @@ generate-grid-items($gutter = false, $prefix = '', $media-querie = '(min-width: 
 		$prefix = '-' + $prefix
 
 	@media $media-querie
+		.{$grid-item-classname}{$prefix}
+			flex-grow 1
+			flex-basis 0
+
 		[class*={$grid-item-classname}{$prefix}]
 			box-sizing border-box
 
