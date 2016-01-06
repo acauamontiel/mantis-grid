@@ -1,6 +1,6 @@
 {
   "name": "mantis-grid",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The definitive responsive grid system",
   "main": "index.js",
   "scripts": {
