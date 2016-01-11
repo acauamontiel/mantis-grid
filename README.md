@@ -6,17 +6,20 @@ Mantis Grid System
 [![npm version](https://badge.fury.io/js/mantis-grid.svg)](http://badge.fury.io/js/mantis-grid)
 
 <p align="center">
-  <img title="Mantis Grid System" src="mantis-grid.png" width="300" />
+  <img title="Mantis Grid System" src="mantis-grid.png" width="200" />
 </p>
 
 ---
 
-> Documentation soon
+Documentation
+-------------
+
+Documentation isn't ready, but you can see some examples [here](http://mantisjs.github.io/mantis-grid/).
 
 
 License
 -------
 
-© 2015 [Acauã Montiel](http://acauamontiel.com.br)
+© 2015 - 2016 [Acauã Montiel](http://acauamontiel.com.br)
 
 [MIT License](http://acaua.mit-license.org/)
