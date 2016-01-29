@@ -1,85 +1,102 @@
-generate-grid($width = $grid-width, $fluid = $grid-fluid)
-	.{$grid-classname}
-		grid($width, $fluid)
+generate-grid-and-modifiers($prefix)
+	.{$mantis.grid.classname}{$prefix}
+		grid()
 
-		&{$grid-separator}row
-			flex-direction row
+		&{$mantis.grid.separator}row
+			grid-direction(row)
 
-		&{$grid-separator}row-reverse
-			flex-direction row-reverse
+		&{$mantis.grid.separator}row-reverse
+			grid-direction(row-reverse)
 
-		&{$grid-separator}column
-			flex-direction column
+		&{$mantis.grid.separator}column
+			grid-direction(column)
 
-		&{$grid-separator}column-reverse
-			flex-direction column-reverse
+		&{$mantis.grid.separator}column-reverse
+			grid-direction(column-reverse)
 
-		&{$grid-separator}align-start
-			align-items flex-start
+		&{$mantis.grid.separator}align-start
+			grid-align(start)
 
-		&{$grid-separator}align-end
-			align-items flex-end
+		&{$mantis.grid.separator}align-end
+			grid-align(end)
 
-		&{$grid-separator}align-center
-			align-items center
+		&{$mantis.grid.separator}align-center
+			grid-align(center)
 
-		&{$grid-separator}align-stretch
-			align-items stretch
+		&{$mantis.grid.separator}align-stretch
+			grid-align(stretch)
 
-		&{$grid-separator}justify-start
-			justify-content flex-start
+		&{$mantis.grid.separator}justify-start
+			grid-justify(start)
 
-		&{$grid-separator}justify-end
-			justify-content flex-end
+		&{$mantis.grid.separator}justify-end
+			grid-justify(end)
 
-		&{$grid-separator}justify-center
-			justify-content center
+		&{$mantis.grid.separator}justify-center
+			grid-justify(center)
 
-		&{$grid-separator}justify-around
-			justify-content space-around
+		&{$mantis.grid.separator}justify-around
+			grid-justify(around)
 
-		&{$grid-separator}justify-between
-			justify-content space-between
+		&{$mantis.grid.separator}justify-between
+			grid-justify(between)
 
-generate-grid-items($gutter = false, $prefix = '', $media-querie = '(min-width: 0)')
+generate-grid($prefix = '', $media-querie = false, $width = $mantis.grid.width, $fluid = $mantis.grid.fluid)
 	unless $prefix is ''
 		$prefix = '-' + $prefix
 
-	@media $media-querie
-		.{$grid-item-classname}{$prefix}
-			flex-grow 1
-			flex-basis 0
+	if $media-querie
+		@media $media-querie
+			generate-grid-and-modifiers($prefix)
+	else
+		generate-grid-and-modifiers($prefix)
 
-			&--first
-				order -1
+generate-grid-item($gutter, $prefix)
+	.{$mantis.grid.item-classname}{$prefix}
+		grid-item-size(grow)
 
-			&--last
-				order 1
+		&--first
+			grid-item-order(first)
 
-			&--auto
-				flex-basis auto
+		&--last
+			grid-item-order(last)
 
-		[class*={$grid-item-classname}{$prefix}]
-			box-sizing border-box
+		&--auto
+			grid-item-size(auto)
 
-			if $gutter
-				padding-left $gutter
-				padding-right $gutter
+	[class*={$mantis.grid.item-classname}{$prefix}]
+		box-sizing border-box
 
-		for i in (1 .. $grid-columns)
-			.{$grid-item-classname}{$prefix}{$grid-separator}{i}
-				grid-item(i)
+		if $gutter
+			padding-left $gutter
+			padding-right $gutter
 
-			unless (i == $grid-columns)
-				.{$grid-offset-classname}{$prefix}{$grid-separator}{i}
-					grid-offset(i)
+	for i in (1 .. $mantis.grid.columns)
+		.{$mantis.grid.item-classname}{$prefix}{$mantis.grid.separator}{i}
+			grid-item(i)
+
+		unless (i == $mantis.grid.columns)
+			.{$mantis.grid.offset-classname}{$prefix}{$mantis.grid.separator}{i}
+				grid-offset(i)
+
+generate-grid-items($gutter = false, $prefix = '', $media-querie = false)
+	unless $prefix is ''
+		$prefix = '-' + $prefix
+
+	if $media-querie
+		@media $media-querie
+			generate-grid-item($gutter, $prefix)
+	else
+		generate-grid-item($gutter, $prefix)
 
 grid-init()
 	generate-grid()
-	for i in $grid-breakpoints
+
+	for i in $mantis.grid.breakpoints
 		if i.media-querie is null
+			generate-grid(i.prefix)
 			generate-grid-items(i.gutter, i.prefix)
 		else
+			generate-grid(i.prefix, i.media-querie)
 			generate-grid-items(i.gutter, i.prefix, i.media-querie)
 
-grid-init()
