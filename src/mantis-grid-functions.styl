@@ -1,37 +1,74 @@
-$grid-classname ?= 'grid'
-$grid-item-classname ?= $grid-classname + '__item'
-$grid-offset-classname ?= $grid-classname + '__offset'
-$grid-separator ?= '--'
-$grid-columns ?= 12
-$grid-width ?= 100%
-$grid-fluid ?= true
-$grid-breakpoints ?= {
+$mantis ?= {}
+$mantis.grid = {}
+$mantis.grid.classname = 'grid'
+$mantis.grid.item-classname = $mantis.grid.classname + '__item'
+$mantis.grid.offset-classname = $mantis.grid.classname + '__offset'
+$mantis.grid.separator = '--'
+$mantis.grid.columns = 12
+$mantis.grid.width = 1140px
+$mantis.grid.fluid = true
+$mantis.grid.breakpoints = {
+	prefix: 'sm'
+}, {
+	prefix: 'md',
+	media-querie: 'only screen and (min-width: 640px)'
+}, {
 	gutter: 10px,
-	prefix: 'mb'
-}, {
-	prefix: 'tb',
-	media-querie: "only screen and (min-width: 640px)"
-}, {
-	gutter: 20px,
-	prefix: 'dt',
-	media-querie: "only screen and (min-width: 960px)"
+	prefix: 'lg',
+	media-querie: 'only screen and (min-width: 960px)'
 }
 
-grid($width = $grid-width, $fluid = $grid-fluid)
+grid($width = $mantis.grid.width, $fluid = $mantis.grid.fluid)
 	display flex
 	flex-wrap wrap
 	margin-left auto
 	margin-right auto
+	width $fuild ? 100% : $width
+	max-width $width if $fluid
 	box-sizing border-box
 
-	if $fluid
-		width 100%
-		max-width $width
-	else
-		width $width
+grid-direction($direction = row)
+	$directions = row row-reverse column column-reverse
+	flex-direction $direction if $direction in $directions
 
-grid-item(i)
-	flex-basis unit(i * (100 / $grid-columns), '%')
+grid-align($align = start)
+	$alignments = flex-start flex-end center strectch
 
-grid-offset(i)
-	margin-left unit(i * (100 / $grid-columns), '%')
+	if ($align is start) || ($align is end)
+		$align = unquote('flex-' + $align)
+
+	align-items $align if $align in $alignments
+
+grid-justify($justify = start)
+	$justifications = flex-start flex-end center space-araound space-between
+
+	if ($justify is start) || ($justify is end)
+		$justify = unquote('flex-' + $justify)
+
+	if ($justify is around) || ($justify is between)
+		$justify = unquote('space-' + $justify)
+
+	justify-content $justify
+
+grid-item($i, $columns = $mantis.grid.columns)
+	flex-basis unit($i * (100 / $columns), '%')
+
+grid-item-size($i)
+	if $i is a 'unit'
+		grid-item($i)
+	else if $i is grow
+		flex-grow 1
+		flex-basis 0
+	else if $i is auto
+		flex-basis auto
+
+grid-item-order($i)
+	if $i is a 'unit'
+		order $i
+	else if $i is first
+		order -1
+	else if $i is last
+		order 1
+
+grid-offset($i, $columns = $mantis.grid.columns)
+	margin-left unit($i * (100 / $columns), '%')
