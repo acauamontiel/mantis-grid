@@ -14,7 +14,7 @@ Mantis Grid System
 Documentation
 -------------
 
-Documentation isn't ready, but you can see some examples [here](http://mantisjs.github.io/mantis-grid/).
+Documentation isn't ready, but you can see some examples [here](http://mantis-stack.github.io/mantis-grid/).
 
 
 License
