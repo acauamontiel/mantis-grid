@@ -17,6 +17,7 @@ $mantis.grid.breakpoints = {
 	prefix: 'lg',
 	media-querie: 'only screen and (min-width: 960px)'
 }
+between = 'between' // Workaround to use `between` as an argument
 
 grid($width = $mantis.grid.width, $fluid = $mantis.grid.fluid)
 	display flex
@@ -45,7 +46,7 @@ grid-justify($justify = start)
 	if ($justify is start) || ($justify is end)
 		$justify = unquote('flex-' + $justify)
 
-	if ($justify is 'between') || ($justify is around)
+	if ($justify is between) || ($justify is around)
 		$justify = unquote('space-' + $justify)
 
 	justify-content $justify
