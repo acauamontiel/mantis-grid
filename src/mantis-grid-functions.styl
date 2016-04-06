@@ -53,6 +53,7 @@ grid-justify($justify = start)
 
 grid-item($i, $columns = $mantis.grid.columns)
 	flex-basis unit($i * (100 / $columns), '%')
+	min-width 0
 
 grid-item-size($i)
 	if $i is a 'unit'
