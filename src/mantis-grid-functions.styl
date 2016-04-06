@@ -52,17 +52,15 @@ grid-justify($justify = start)
 	justify-content $justify
 
 grid-item($i, $columns = $mantis.grid.columns)
-	flex-basis unit($i * (100 / $columns), '%')
-	min-width 0
-
-grid-item-size($i)
 	if $i is a 'unit'
-		grid-item($i)
+		flex-basis unit($i * (100 / $columns), '%')
 	else if $i is grow
 		flex-grow 1
 		flex-basis 0
 	else if $i is auto
 		flex-basis auto
+
+	min-width 0
 
 grid-item-order($i)
 	if $i is a 'unit'

@@ -53,7 +53,7 @@ generate-grid($prefix = '', $media-querie = false, $width = $mantis.grid.width, 
 
 generate-grid-item($gutter, $prefix)
 	.{$mantis.grid.item-classname}{$prefix}
-		grid-item-size(grow)
+		grid-item(grow)
 
 		&--first
 			grid-item-order(first)
@@ -62,7 +62,7 @@ generate-grid-item($gutter, $prefix)
 			grid-item-order(last)
 
 		&--auto
-			grid-item-size(auto)
+			grid-item(auto)
 
 	[class*={$mantis.grid.item-classname}{$prefix}]
 		box-sizing border-box
