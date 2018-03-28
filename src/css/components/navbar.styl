@@ -1,0 +1,153 @@
+/*
+ * Navbar Config
+ */
+
+$navbar-padding = 10px $mantis.grid.breakpoints[0].gutter
+$navbar-color = $themes.primary.normal
+$navbar-background = $color.white
+$navbar-border-radius = $mantis.ui.radius.default
+
+$navbar-dark-color = $color.white
+$navbar-dark-background = $themes.primary.highlight
+
+$navbar-brand-margin = 18px
+$navbar-brand-font-size = $font-size-xlarge
+$navbar-brand-icon-margin = 8px
+
+$navbar-collapse-transition = $transition.time.fast
+
+$navbar-nav-margin = 0 18px
+$navbar-nav-padding = 12px 0
+$navbar-nav-border = 1px solid $hr-border-color
+
+$navbar-nav-item-margin = 18px
+
+$navbar-link-padding = 8px 0
+$navbar-link-disabled-opacity = .5
+
+
+/*
+ * Navbar Styles
+ */
+
+
+navbar-expand()
+	&.navbar
+		border-radius $navbar-border-radius
+
+	& .navbar
+		&__menu
+			display none
+
+		&__collapse
+			display flex
+			grid-align center
+			grid-justify between
+			flex-grow 1
+			position static
+			top auto
+			bottom auto
+			left auto
+			right auto
+			margin 0
+			background transparent
+			opacity 1
+			visibility visible
+			transform scaleY(1)
+
+		&__nav
+			display flex
+			margin 0
+			padding 0
+			border-top none !important
+
+			&:only-child
+				margin-left auto
+
+			&__item
+				&:not(:first-child)
+					margin-left $navbar-nav-item-margin
+
+.navbar
+	@extends .p
+
+	display flex
+	grid-align center
+	grid-justify between
+	position relative
+	padding $navbar-padding
+	color $navbar-color
+	background $navbar-background
+	z-index navbar
+
+	&--sticky
+		fixed top 0 left 0 right 0
+
+	&--expand
+		navbar-expand()
+
+		for $bp in $mantis.querist.breakpoints
+			&-{$bp}
+				@media $from[$bp]
+					navbar-expand()
+
+	&--dark
+		color $navbar-dark-color
+		background $navbar-dark-background
+
+		& ^[0]__collapse
+			background $navbar-dark-background
+
+	&__brand
+		@extends .type-brand
+
+		display flex
+		grid-align center
+		flex-grow 1
+		margin-right $navbar-brand-margin
+		font-size $navbar-brand-font-size
+
+		.icon
+			top 0
+			margin-right $navbar-brand-icon-margin
+
+	&__collapse
+		position absolute
+		top 100%
+		left 0
+		right 0
+		margin-bottom 10px
+		background $navbar-background
+		border-radius 0 0 $navbar-border-radius $navbar-border-radius
+		opacity 0
+		visibility hidden
+		transition $navbar-collapse-transition
+		transform scaleY(0)
+		transform-origin 50% 0
+
+		&--active
+			opacity 1
+			visibility visible
+			transform scaleY(1)
+
+	&__nav
+		margin $navbar-nav-margin
+		padding $navbar-nav-padding
+
+		&:not(:first-child)
+			border-top $navbar-nav-border
+
+	&__link
+		display block
+		padding $navbar-link-padding
+
+		&--active
+			@extends .a
+
+		&--disabled
+			opacity $navbar-link-disabled-opacity
+			cursor default
+
+	> .grid
+		grid-align center
+		grid-justify between

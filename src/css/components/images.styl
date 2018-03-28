@@ -1,0 +1,51 @@
+/*
+ * Images Config
+ */
+
+$img-hoverable-transition = $mantis.ui.transitions.default
+$img-rounded-border-radius = $mantis.ui.radius.default
+$img-thumb-padding = 3px
+$img-thumb-border-width = 1px
+$img-thumb-border-style = solid
+$img-thumb-border-color = $themes.default.normal
+$img-thumb-hover-border-color = $themes.default.highlight
+
+
+/*
+ * Images Styles
+ */
+
+.img
+	&--rounded
+		border-radius $img-rounded-border-radius
+
+	&--circle
+		border-radius 50%
+
+	&--thumb
+		padding $img-thumb-padding
+		border-radius $img-rounded-border-radius
+		border-width $img-thumb-border-width
+		border-style $img-thumb-border-style
+		border-color $img-thumb-border-color
+
+	&--responsive
+		display block
+		max-width 100%
+		height auto
+
+	&--hoverable
+		transition $img-hoverable-transition
+
+		&:hover
+			border-color $img-thumb-hover-border-color
+
+	// Themes
+	for $theme in $themes
+		&--{$theme}
+			$c = $themes[$theme].normal
+			border-color $c
+
+			&.img--hoverable:hover
+				$c = $themes[$theme].highlight
+				border-color $c

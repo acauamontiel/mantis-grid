@@ -1,0 +1,109 @@
+/*
+ * Dropdown Config
+ */
+
+$dropdown-list-margin = 10px
+$dropdown-list-background = $color.white
+$dropdown-list-border = 2px solid $color.silver
+$dropdown-list-border-radius = $mantis.ui.radius.default
+$dropdown-list-transition = $transition.time.fast
+$dropdown-header-padding = 8px 20px 5px
+$dropdown-header-font-family = $font.family.brand
+$dropdown-header-font-weight = $font.weight.marvel-bold
+$dropdown-header-font-size = $font.size.base
+$dropdown-header-color = $color.black
+$dropdown-item-padding = 8px 20px
+$dropdown-item-min-width = 150px
+$dropdown-item-font-size = $font.size.small
+$dropdown-item-color = $themes.default.highlight
+$dropdown-item-transition = $mantis.ui.transitions.default
+$dropdown-item-hover-color = $themes.default.highlight
+$dropdown-item-hover-background = $color.clouds
+
+
+/*
+ * Dropdown Styles
+ */
+
+.dropdown
+	position relative
+	display inline-flex
+
+	&--hover:hover .dropdown__list
+	&__toggle:focus + .dropdown__list
+		opacity 1
+		visibility visible
+
+	&__list
+		overflow hidden
+		overflow-y auto
+		fixed top 0 bottom 0 left 0 right 0
+		background $dropdown-list-background
+		transition $dropdown-list-transition
+		opacity 0
+		visibility hidden
+		z-index dropdown
+
+		@media $from.md
+			position absolute
+			top 100%
+			right auto
+			bottom auto
+			margin-top $dropdown-list-margin
+			border $dropdown-list-border
+			border-radius $dropdown-list-border-radius
+
+			&--top-center
+			&--bottom-center
+					left 50%
+					transform translateX(-50%)
+
+			&--top-right
+			&--bottom-right
+					left auto
+					right 0
+
+			&--top-left
+			&--top-center
+			&--top-right
+				top auto
+				bottom 100%
+				margin-top 0
+				margin-bottom $dropdown-list-margin
+
+	&__close
+		float right
+		padding 5px
+		font-size 20px
+
+		@media $from.md
+			display none
+
+	&__header
+		@extends .strong, .text--ellipsis
+		padding $dropdown-header-padding
+		font-family $dropdown-header-font-family
+		font-weight $dropdown-header-font-weight
+		font-size $dropdown-header-font-size
+		color $dropdown-header-color
+
+	&__item
+		@extends .text--ellipsis
+
+		display block
+		padding $dropdown-item-padding
+		min-width $dropdown-item-min-width
+		font-size $dropdown-item-font-size
+		color $dropdown-item-color !important
+		background transparent
+		transition $dropdown-item-transition
+
+		&:hover
+		&:focus
+			text-decoration none !important
+			background $dropdown-item-hover-background
+
+	&__separator
+		@extends .hr
+
+		margin 10px

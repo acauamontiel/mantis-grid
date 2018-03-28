@@ -1,0 +1,111 @@
+/*
+ * Tables Config
+ */
+
+$table-striped-background = alpha($color.black, 5%)
+$table-hoverable-background = alpha($color.black, 8%)
+$table-hoverable-transition = $transition.time.fast
+$table-framed-border = 2px solid $color.silver
+
+$table = {
+	themes: {
+		background: ('normal' lightness 88%)
+	}
+}
+
+$caption-padding = 12px 0
+$caption-color = $color.asbestos
+
+$th-padding = 12px
+$th-border-bottom = 2px solid $color.silver
+
+$td-padding = 12px
+$td-border-top = 1px solid $color.silver
+
+$tbody-color = $color.asbestos
+
+
+/*
+ * Tables Styles
+ */
+
+// Define state
+table-theme($theme)
+	for $prop, $val in $table.themes
+		if length($val) is 3
+			$c = $themes[$theme][$val[0]]
+			$f = $val[1]
+			$p = $val[2]
+			{$prop} $f($c, $p)
+		else if typeof($val) is 'string'
+			$c = $themes[$theme][$val]
+			{$prop} $c
+		else
+			{$prop} $val
+
+.table
+	@extends .p
+	width 100%
+	max-width 100%
+	min-width 100%
+
+	caption
+		@extends .small
+		@extends .em
+		padding $caption-padding
+		color $caption-color
+
+	th
+		@extends .strong
+		padding $th-padding
+		border-bottom $th-border-bottom
+
+	td
+		padding $td-padding
+		border-top $td-border-top
+
+	tbody
+		tr
+			&:first-child
+				td
+					border none
+
+	tfoot
+		@extends .em
+		color $tbody-color
+
+	// Styles
+	&--striped
+		tbody
+			tr
+				&:nth-child(odd)
+					td
+						background $table-striped-background
+
+	&--hoverable
+		tbody
+			tr
+				&:hover
+					td
+						background $table-hoverable-background
+			td
+				transition $table-hoverable-transition
+
+	&--framed
+		border $table-framed-border
+
+	&--scrollable
+		@extends .p
+		overflow-x auto
+
+		table
+			margin 0
+			width auto
+
+		th
+			white-space nowrap
+
+	// Themes
+	for $theme in $themes
+		&--{$theme}
+			table-theme $theme

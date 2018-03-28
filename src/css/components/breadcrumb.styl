@@ -1,0 +1,35 @@
+/*
+ * Breadcrumb Config
+ */
+
+$breadcrumb-padding = 8px 18px
+$breadcrumb-color = $themes.default.normal
+$breadcrumb-background = $color.white
+$breadcrumb-border-radius = $mantis.ui.radius.default
+
+
+/*
+ * Breadcrumb Styles
+ */
+
+.breadcrumb
+	@extends .p
+
+	display flex
+	position relative
+	padding $breadcrumb-padding
+	color $breadcrumb-color
+	background $breadcrumb-background
+	border-radius $breadcrumb-border-radius
+
+	&__item
+		@extends .text--nowrap
+
+		margin 0
+
+		&:not(:last-child):after
+			content '/'
+			margin 0 10px
+
+		a
+			@extends .a

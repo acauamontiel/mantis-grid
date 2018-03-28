@@ -1,0 +1,66 @@
+/*
+ * General Config
+ */
+
+// Selections
+$selection-color = $color.clouds
+$selection-background = $color.midnight-blue
+
+// Body
+$body-color = $themes.default.highlight
+$body-background = $color.clouds
+
+// Custom
+$color-white = $color.white
+$color-black = $color.black
+$color-default = $themes.default.highlight
+$color-alert = $themes.alert.highlight
+$color-warning = $themes.warning.highlight
+$color-info = $themes.info.highlight
+$color-success = $themes.success.highlight
+$color-primary = $themes.primary.highlight
+$color-secondary = $themes.secondary.highlight
+
+
+/*
+ * General Styles
+ */
+
++selection()
+	color $selection-color
+	background $selection-background
+
+body
+	padding 10px
+	color $body-color
+	background $body-background
+
+
+// Custom
+.github-fork-ribbon
+	background $color-primary
+
+.layout
+	&__header
+		margin-bottom 50px
+
+		.img
+			margin 25px auto
+
+	&__section
+		margin-bottom 50px
+
+.grid--example
+	margin-bottom 15px
+	text-align center
+	color $color-white
+	background alpha($color-primary, .1)
+
+	[class*=grid__item]
+		margin-bottom 1px
+		padding 10px 0
+		vertical-align middle
+		background alpha($color-primary, .25)
+
+		&:nth-child(odd)
+			background alpha($color-primary, .5)

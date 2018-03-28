@@ -1,0 +1,231 @@
+/*
+ * Globals
+ */
+
+$mantis ?= {}
+$mantis.ui = {
+	gradients: {
+		enable: false
+	},
+	gutters: {
+		enable: false,
+		default: 10px
+	},
+	radius: {
+		enable: true,
+		default: 3px
+	},
+	shadows: {
+		enable: false
+	},
+	transitions: {
+		enable: true,
+		default: .5s
+	}
+}
+
+
+/*
+ * Colors
+ *
+ * Colors from Flat UI Colors:
+ * https://flatuicolors.com/
+ *
+ * Use the following website to help you name other colors:
+ * http://chir.ag/projects/name-that-color
+ */
+
+$color = {
+	black: #000000,
+	white: #ffffff,
+
+	turquoise: #1abc9c,
+	green-sea: #16a085,
+
+	emerald: #2ecc71,
+	nephritis: #27ae60,
+
+	peter-river: #3498db,
+	belize-hole: #2980b9,
+
+	amethyst: #9b59b6,
+	wisteria: #8e44ad,
+
+	wet-asphalt: #34495e,
+	midnight-blue: #2c3e50,
+
+	sun-flower: #f1c40f,
+	orange: #f39c12,
+
+	carrot: #e67e22,
+	pumpkin: #d35400,
+
+	alizarin: #e74c3c,
+	pomegranate: #c0392b,
+
+	clouds: #ecf0f1,
+	silver: #bdc3c7,
+
+	concrete: #95a5a6,
+	asbestos: #7f8c8d
+}
+
+$themes = {
+	default: {
+		normal: $color.concrete,
+		highlight: $color.asbestos
+	},
+	alert: {
+		normal: $color.alizarin,
+		highlight: $color.pomegranate
+	},
+	warning: {
+		normal: $color.carrot,
+		highlight: $color.pumpkin
+	},
+	info: {
+		normal: $color.peter-river,
+		highlight: $color.belize-hole
+	},
+	success: {
+		normal: $color.emerald,
+		highlight: $color.nephritis
+	}
+	primary: {
+		normal: $color.turquoise,
+		highlight: $color.green-sea
+	},
+	secondary: {
+		normal: $color.amethyst,
+		highlight: $color.wisteria
+	}
+}
+
+
+/*
+ * Typography
+ */
+
+$font = {
+	// Font Names
+	alias: {
+		default: 'sans-serif',
+		brand: 'lato',
+		reference: 'serif',
+		code: 'monospace'
+	},
+
+	// Font Families
+	family: {
+		serif: unquote('Georgia, serif'),
+		sans-serif: unquote('Arial, Helvetica, sans-serif'),
+		monospace: unquote('Consolas, Courier, monospace'),
+		lato: unquote('"Lato", sans-serif')
+	},
+
+	// Font Weights
+	weight: {
+		sans-serif-regular: normal,
+		sans-serif-bold: bold,
+		lato-regular: 300
+	},
+
+	// Font Sizes
+	size: {
+		xlargest: rem(40),
+		largest: rem(32),
+		xxlarge: rem(28),
+		xlarge: rem(24),
+		large: rem(20),
+		base: rem(16),
+		small: rem(13),
+		xsmall: rem(11)
+	},
+
+	// Font Trackings
+	tracking: {
+		default: 0em,
+		near: -0.02em,
+		far: 0.02em,
+	},
+
+	// Font Leadings
+	leading: {
+		default: 1.5em,
+		near: 1.2em,
+		far: 1.8em
+	},
+
+	scale: 100%
+}
+
+// Font Definitions
+$font.family.default = $font.family[$font.alias.default]
+$font.family.brand = $font.family[$font.alias.brand]
+$font.family.reference = $font.family[$font.alias.reference]
+$font.family.code = $font.family[$font.alias.code]
+$font.weight.default = $font.weight[$font.alias.default + '-regular']
+$font.weight.brand = $font.weight[$font.alias.brand + '-regular']
+
+
+/*
+ * Transition
+ */
+
+$transition = {
+	time: {
+		default: $mantis.ui.transitions.default,
+	},
+
+	easing: {
+		default: 'ease',
+		inOutBack: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+	}
+}
+
+$transition.time.fast = $transition.time.default / 2
+$transition.time.slow = $transition.time.default * 2
+
+
+/*
+ * Breakpoints
+ *
+ * See how to use Mantis Querist:
+ * https://github.com/mantis-stack/mantis-querist
+ */
+
+querist-init()
+
+
+/*
+ * Grid
+ *
+ * See how to use Mantis Grid System:
+ * https://github.com/mantis-stack/mantis-grid
+ */
+
+$mantis.grid.breakpoints = {
+	prefix: 'sm',
+	gutter: $mantis.ui.gutters.enable && $mantis.ui.gutters.default
+}, {
+	prefix: 'md',
+	gutter: $mantis.ui.gutters.enable && $mantis.ui.gutters.default,
+	media-querie: $from.md
+}, {
+	prefix: 'lg',
+	gutter: $mantis.ui.gutters.enable && $mantis.ui.gutters.default,
+	media-querie: $from.lg
+}
+grid-init()
+
+
+/*
+ * Layers
+ *
+ * See how to use Mantis Layers:
+ * https://github.com/mantis-stack/mantis-layers
+ */
+
+$mantis.layers.context = {
+	default: (body navbar dropdown)
+}

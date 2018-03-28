@@ -1,0 +1,77 @@
+/*
+ * List Elements Config
+ */
+
+// Unordered Lists
+$ul-padding = 0 0 0 20px
+$ul-list-style-type = disc
+$ul-ul-list-style-type = circle
+$ul-ul-ul-list-style-type = square
+$ul-ul-margin = 0
+
+// Ordered Lists
+$ol-padding = $ul-padding
+$ol-list-style-type = decimal
+$ol-ol-margin = $ul-ul-margin
+
+// Definition Lists
+$dt-margin = 0 0 3px
+$dt-font-weight = bold
+
+
+/*
+ * "Classful" List Styles
+ */
+
+$list-elements = ()
+
+.ul
+	@extends .p
+	padding $ul-padding
+	list-style-type $ul-list-style-type
+
+	append($list-elements, selector())
+
+	.ul
+	ul
+		margin $ul-ul-margin
+		list-style-type $ul-ul-list-style-type
+
+		.ul
+		ul
+			list-style-type $ul-ul-ul-list-style-type
+
+.ol
+	@extends .p
+	padding $ol-padding
+	list-style-type $ol-list-style-type
+
+	append($list-elements, selector())
+
+	.ol
+	ol
+		margin $ol-ol-margin
+
+.dt
+	margin $dt-margin
+	font-weight $dt-font-weight
+
+	append($list-elements, selector())
+
+.dl
+	@extends .p
+
+	append($list-elements, selector())
+
+	dt
+		@extends .dt
+
+
+/*
+ * "Classless" List Styles
+ */
+
+.ui
+	for i in $list-elements
+		{slice(i, 1)}
+			@extends {i}

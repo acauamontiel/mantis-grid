@@ -1,0 +1,197 @@
+/*
+ * Buttons Config
+ */
+
+$bt-padding = 5px 18px
+$bt-border-width = 2px
+$bt-border-style = solid
+$bt-border-radius = $mantis.ui.radius.default
+$bt-transition = $transition.time.fast
+$bt-disabled-opacity = .75
+
+$bt-small-padding = 0 10px
+$bt-small-font-size = $font-size-small
+
+$bt-large-padding = 8px 25px
+$bt-large-font-size = $font-size-large
+
+$bt-giant-padding = 12px 35px
+$bt-giant-font-size = $font-size-xxlarge
+
+$bt-block-margin = 3px 0 0
+
+$bt = {
+	sizes: {
+		small: {
+			padding: $bt-small-padding,
+			font-size: $bt-small-font-size
+		},
+		default: {
+			padding: $bt-padding
+		},
+		large: {
+			padding: $bt-large-padding,
+			font-size: $bt-large-font-size
+		},
+		giant: {
+			padding: $bt-giant-padding,
+			font-size: $bt-giant-font-size
+		}
+	},
+	styles: {
+		default: {
+			default: {
+				color: $color.white,
+				background: 'normal'
+				border-color: transparent
+			},
+			hover: {
+				background: 'highlight'
+			}
+		},
+		quiet: {
+			default: {
+				color: 'normal',
+				background: transparent
+			},
+			hover: {
+				color: 'highlight',
+				background: ('normal' alpha .25)
+			}
+		},
+		fussy: {
+			default: {
+				color: 'normal',
+				background: transparent,
+				border-color: 'normal'
+			},
+			hover: {
+				color: 'highlight',
+				background: ('normal' alpha .25),
+				border-color: 'highlight'
+			}
+		}
+	}
+}
+
+
+/*
+ * Buttons Styles
+ */
+
+// Define state
+button-set-state($theme, $style, $state)
+	for $prop, $val in $bt.styles[$style][$state]
+		if length($val) is 3
+			$c = $themes[$theme][$val[0]]
+			$f = $val[1]
+			$p = $val[2]
+			{$prop} $f($c, $p)
+		else if typeof($val) is 'string'
+			$c = $themes[$theme][$val]
+			{$prop} $c
+		else
+			{$prop} $val
+
+// Define theme
+button-theme($theme, $style)
+	button-set-state($theme, $style, 'default')
+
+	&:hover
+	&:focus
+	&.bt--active
+		button-set-state($theme, $style, 'hover')
+
+.bt
+	display inline-block
+	padding $bt-padding
+	text-align center
+	line-height inherit
+	white-space nowrap
+	vertical-align middle
+	border-width $bt-border-width
+	border-style $bt-border-style
+	border-radius $bt-border-radius
+	transition $bt-transition
+	cursor pointer
+	button-theme 'default' 'default'
+
+	&[disabled]
+		opacity $bt-disabled-opacity
+		cursor not-allowed
+		pointer-events none
+
+	+ .bt--block
+		margin $bt-block-margin
+
+	// Sizes
+	for $size in $bt.sizes
+		&--{$size}
+			for $prop, $val in $bt.sizes[$size]
+				{$prop} $val
+
+	&--block
+		display block
+		width 100%
+
+	// Styles
+	for $style in $bt.styles
+		&--{$style}
+			button-theme 'default' $style
+
+	// Themes
+	for $theme in $themes
+		&--{$theme}
+			button-theme $theme 'default'
+
+			for $style in $bt.styles
+				&.bt--{$style}
+					button-theme $theme $style
+
+	&-group
+		display inline-flex
+		vertical-align middle
+
+		.bt
+			&:not(:first-child):not(:last-child)
+				border-radius 0
+
+			&:not(:first-child)
+				margin-left -($bt-border-width)
+
+			&:first-child
+				border-top-right-radius 0
+				border-bottom-right-radius 0
+
+			&:last-child
+				border-top-left-radius 0
+				border-bottom-left-radius 0
+
+		&-vertical
+			display inline-flex
+			flex-direction column
+			align-items flex-start
+			justify-content center
+
+			.bt
+				width 100%
+
+				&:not(:first-child):not(:last-child)
+					border-radius 0
+
+				&:not(:first-child)
+					margin-top -($bt-border-width)
+
+				&:first-child
+					border-bottom-left-radius 0
+					border-bottom-right-radius 0
+
+				&:last-child
+					border-top-left-radius 0
+					border-top-right-radius 0
+
+		// Sizes
+		for $size in $bt.sizes
+			&--{$size}
+				.bt
+					@extends .bt--{$size}

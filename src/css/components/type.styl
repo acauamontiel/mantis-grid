@@ -1,0 +1,382 @@
+/*
+ * Typography Config
+ */
+
+$type-default-font-family = $font.family.default
+$type-default-font-weight = $font.weight.default
+$type-default-bold-font-weight = $font.weight.default
+
+$type-brand-font-family = $font.family.brand
+$type-brand-font-weight = $font.weight.brand
+$type-brand-bold-font-weight = $font.weight.brand
+
+$type-reference-font-family = $font.family.reference
+$type-code-font-family = $font.family.code
+
+$font-size-xlargest = $font.size.xlargest
+$font-size-largest = $font.size.largest
+$font-size-xxlarge = $font.size.xxlarge
+$font-size-xlarge = $font.size.xlarge
+$font-size-large = $font.size.large
+$font-size-base = $font.size.base
+$font-size-small = $font.size.small
+$font-size-xsmall = $font.size.xsmall
+
+$font-leading-default = $font.leading.default
+$font-leading-near = $font.leading.near
+$font-leading-far = $font.leading.far
+
+$font-scale = $font.scale
+
+
+/*
+ * Text Elements Styles
+ */
+
+// Body
+$body-font-size = $font-size-base
+$body-line-height = $font-leading-default
+
+// Headings
+$headings-margin = 0 0 8px
+$headings-font-family = $type-brand-font-family
+$headings-font-weight = $type-brand-font-weight
+$headings-line-height = $font-leading-default
+$headings-color = $themes.primary.highlight
+
+$h1-font-size = $font-size-xlargest
+$h2-font-size = $font-size-largest
+$h3-font-size = $font-size-xxlarge
+$h4-font-size = $font-size-xlarge
+$h5-font-size = $font-size-large
+$h6-font-size = $font-size-base
+
+// Paragraphs
+$p-margin = 0 0 12px
+$p-font-size = $font-size-base
+$p-color = inherit
+
+// Links
+$a-color = $themes.primary.normal
+$a-color-hover = $themes.primary.highlight
+$a-transition = $transition.time.fast
+
+// Other Text Elements
+$small-font-size = 75%
+
+$strong-font-weight = bold
+
+$em-font-style = italic
+
+$mark-padding = 3px
+$mark-background = rgba($color.sun-flower, .5)
+
+$abbr-border-bottom = 1px dotted $body-color
+$abbr-cursor = help
+
+$samp-font-family = $type-code-font-family
+
+$code-padding = 3px
+$code-font-family = $samp-font-family
+$code-color = $color.clouds
+$code-background = $color.midnight-blue
+$code-border-radius = $mantis.ui.radius.default
+$code-selection-color = $color.midnight-blue
+$code-selection-background = $color.clouds
+
+$pre-overflow = auto
+$pre-padding = 5px 10px
+$pre-font-family = $code-font-family
+$pre-color = $code-color
+$pre-background = $code-background
+$pre-border-radius = $mantis.ui.radius.default
+$pre-selection-color = $code-selection-color
+$pre-selection-background = $code-selection-background
+
+$kbd-padding = $code-padding
+$kbd-font-family = $code-font-family
+$kbd-color = $code-color
+$kbd-background = $color.asbestos
+$kbd-border-radius = $mantis.ui.radius.default
+$kbd-selection-color = $code-selection-color
+$kbd-selection-background = $code-selection-background
+
+$blockquote-padding = 15px 20px
+$blockquote-font-family = $font-family-reference
+$blockquote-font-size = inherit
+$blockquote-font-style = italic
+$blockquote-quotation-marks = true
+$blockquote-border-style = solid
+$blockquote-border-width = 0 0 0 5px
+$blockquote-border-color = $color.silver
+$blockquote-footer-color = $color.asbestos
+$blockquote-cite-font-style = italic
+
+$hr-margin = 20px 0
+$hr-border-width = 0 0 1px
+$hr-border-style = solid
+$hr-border-color = $color.silver
+
+
+/*
+ * Text Types
+ */
+
+// Types
+.type-default
+	font-family $type-default-font-family
+	font-weight $type-default-font-weight
+
+.type-default-bold
+	font-family $type-default-font-family
+	font-weight $type-default-bold-font-weight
+
+.type-brand
+	font-family $type-brand-font-family
+	font-weight $type-brand-font-weight
+
+
+// General
+html
+	font-size $font-scale
+
+body
+	@extend .type-brand
+	font-size $body-font-size
+	line-height $body-line-height
+
+
+/*
+ * "Classful" Text Types
+ */
+
+$text-elements = ()
+
+.h1
+	margin $headings-margin
+	font-family $headings-font-family
+	font-size $h1-font-size
+	font-weight $headings-font-weight
+	line-height $headings-line-height
+	color $headings-color
+
+	append($text-elements, selector())
+
+.h2
+	@extends .h1
+	font-size $h2-font-size
+
+	append($text-elements, selector())
+
+.h3
+	@extends .h1
+	font-size $h3-font-size
+
+	append($text-elements, selector())
+
+.h4
+	@extends .h1
+	font-size $h4-font-size
+
+	append($text-elements, selector())
+
+.h5
+	@extends .h1
+	font-size $h5-font-size
+
+	append($text-elements, selector())
+
+.h6
+	@extends .h1
+	font-size $h6-font-size
+
+	append($text-elements, selector())
+
+.p
+	margin $p-margin
+	font-size $p-font-size
+	color $p-color
+
+	append($text-elements, selector())
+
+.a
+	&:not(.bt)
+		color $a-color
+		transition $a-transition
+
+	append($text-elements, selector())
+
+	&:hover
+		&:not(.bt)
+			color $a-color-hover
+			text-decoration underline
+
+.small
+	font-size $small-font-size
+
+	append($text-elements, selector())
+
+.strong
+	font-weight $strong-font-weight
+
+	append($text-elements, selector())
+
+.em
+	font-style $em-font-style
+
+	append($text-elements, selector())
+
+.mark
+	padding $mark-padding
+	background $mark-background
+
+	append($text-elements, selector())
+
+.abbr
+	border-bottom $abbr-border-bottom
+
+	append($text-elements, selector())
+
+	&[title]
+		cursor $abbr-cursor
+
+.samp
+	font-family $font-family-monospace
+
+	append($text-elements, selector())
+
+.code
+	padding $code-padding
+	font-family $code-font-family
+	color $code-color
+	background $code-background
+	border-radius $code-border-radius
+
+	append($text-elements, selector())
+
+	+selection()
+		color $code-selection-color
+		background $code-selection-background
+
+.pre
+	@extends .p
+	overflow $pre-overflow
+	padding $pre-padding
+	font-family $pre-font-family
+	color $pre-color
+	background $pre-background
+	border-radius $pre-border-radius
+
+	append($text-elements, selector())
+
+	+selection()
+		color $pre-selection-color
+		background $pre-selection-background
+
+.kbd
+	padding $kbd-padding
+	font-family $kbd-font-family
+	color $kbd-color
+	background $kbd-background
+	border-radius $kbd-border-radius
+
+	append($text-elements, selector())
+
+	+selection()
+		color $kbd-selection-color
+		background $kbd-selection-background
+
+.blockquote
+	@extends .p
+	padding $blockquote-padding
+	font-family $blockquote-font-family
+	font-size $blockquote-font-size
+	border-style $blockquote-border-style
+	border-width $blockquote-border-width
+	border-color $blockquote-border-color
+
+	append($text-elements, selector())
+
+	if $blockquote-quotation-marks
+		&__quote
+			font-style $blockquote-font-style
+
+			&:before
+				content '“'
+
+			&:after
+				content '”'
+
+	&__footer
+		color $blockquote-footer-color
+
+		&:before
+			content '\2014 \00A0'
+
+	&__cite
+		font-style $blockquote-cite-font-style
+
+.hr
+	margin $hr-margin
+	border-style $hr-border-style
+	border-width $hr-border-width
+	border-color $hr-border-color
+
+	append($text-elements, selector())
+
+
+/*
+ * "Classless" Text Styles
+ */
+
+.ui
+	for i in $text-elements
+		{slice(i, 1)}
+			@extends {i}
+
+
+/*
+ * Text Styles
+ */
+
+// Define theme
+text-theme($theme)
+	$c = $themes[$theme].normal
+	color $c !important
+
+.text
+	// Misc
+	$text-alignments = left right center justify
+	$text-transformations = uppercase lowercase capitalize
+
+	for i in $text-alignments
+		&--{i}
+			text-align i
+
+	for i in $text-transformations
+		&--{i}
+			text-transform i
+
+	&--break
+		overflow-wrap break-word
+		word-wrap break-word
+		hyphens auto
+
+		th&
+		td&
+			word-break break-all
+
+	&--nowrap
+		white-space nowrap
+
+	&--ellipsis
+		ellipsis()
+
+	// Themes
+	for $theme in $themes
+		if $theme is 'default'
+			&--muted
+				text-theme $theme
+		else
+			&--{$theme}
+				text-theme $theme

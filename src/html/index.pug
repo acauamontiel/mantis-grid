@@ -1,0 +1,246 @@
+extends layouts/default
+
+block content
+	.github-fork-ribbon-wrapper.right
+		.github-fork-ribbon
+			a(href='https://github.com/mantis-stack/mantis-grid', title='Fork me on GitHub') Fork me on GitHub
+
+	main.layout.grid
+		header.layout__header.grid__item-sm--12.text--center
+			img.img(src='img/logo.png', alt='Mantis Grid System Logo', width='150px', height='150px')
+			h1.h1= title
+			h2.h4.em.text--muted= description
+
+		section#basic.layout__section.grid__item-sm--12
+			h1.h2 #[a(href='#basic') Basic]
+			h3.h5.text--muted .grid__item-xx--n
+
+			.grid.grid--example
+				.grid__item-sm--1 1
+				.grid__item-sm--11 11
+				.grid__item-sm--2 2
+				.grid__item-sm--10 10
+				.grid__item-sm--3 3
+				.grid__item-sm--9 9
+				.grid__item-sm--4 4
+				.grid__item-sm--8 8
+				.grid__item-sm--5 5
+				.grid__item-sm--7 7
+				.grid__item-sm--6 6
+				.grid__item-sm--6 6
+				.grid__item-sm--7 7
+				.grid__item-sm--5 5
+				.grid__item-sm--8 8
+				.grid__item-sm--4 4
+				.grid__item-sm--9 9
+				.grid__item-sm--3 3
+				.grid__item-sm--10 10
+				.grid__item-sm--2 2
+				.grid__item-sm--11 11
+				.grid__item-sm--1 1
+				.grid__item-sm--12 12
+
+		section#offset.layout__section.grid__item-sm--12
+			h1.h2 #[a(href='#offset') Offset]
+			h3.h5.text--muted .grid__offset-xx--n
+
+			.grid.grid--example
+				.grid__item-sm--11.grid__offset-sm--1 1
+				.grid__item-sm--10.grid__offset-sm--2 2
+				.grid__item-sm--9.grid__offset-sm--3 3
+				.grid__item-sm--8.grid__offset-sm--4 4
+				.grid__item-sm--7.grid__offset-sm--5 5
+				.grid__item-sm--6.grid__offset-sm--6 6
+				.grid__item-sm--5.grid__offset-sm--7 7
+				.grid__item-sm--4.grid__offset-sm--8 8
+				.grid__item-sm--3.grid__offset-sm--9 9
+				.grid__item-sm--2.grid__offset-sm--10 10
+				.grid__item-sm--1.grid__offset-sm--11 11
+
+		section#auto-sizing.layout__section.grid__item-sm--12
+			h1.h2 #[a(href='#auto-sizing') Auto Sizing]
+			h3.h5.text--muted .grid__item-xx
+
+			.grid.grid--example
+				.grid__item-sm--6 6
+				.grid__item-sm grow
+
+			.grid.grid--example
+				.grid__item-sm--2 2
+				.grid__item-sm grow
+				.grid__item-sm--2 2
+
+			h3.h5.text--muted .grid__item-xx--auto
+
+			.grid.grid--example
+				.grid__item-sm--6 6
+				.grid__item-sm--auto shrink
+			.grid.grid--example
+				.grid__item-sm--2 2
+				.grid__item-sm--auto shrink
+				.grid__item-sm--2 2
+
+			h3.h5.text--muted mixed
+
+			.grid.grid--example
+				.grid__item-sm grow
+				.grid__item-sm--auto shrink
+				.grid__item-sm grow
+				.grid__item-sm--auto shrink
+				.grid__item-sm grow
+
+		section#nesting.layout__section.grid__item-sm--12
+			h1.h2 #[a(href='#nesting') Nesting]
+			h3.h5.text--muted
+				pre.
+					.grid
+						.grid__item-xx--n
+							.grid
+								.grid__item-xx--n
+
+			.grid.grid--example
+				.grid__item-sm--8 8
+					.grid.grid--example
+						.grid__item-sm--8 8
+							.grid.grid--example
+								.grid__item-sm--8 8
+								.grid__item-sm--4 4
+						.grid__item-sm--4 4
+							.grid.grid--example
+								.grid__item-sm--8 8
+								.grid__item-sm--4 4
+				.grid__item-sm--4 4
+					.grid.grid--example
+						.grid__item-sm--8 8
+							.grid.grid--example
+								.grid__item-sm--8 8
+								.grid__item-sm--4 4
+						.grid__item-sm--4 4
+							.grid.grid--example
+								.grid__item-sm--8 8
+								.grid__item-sm--4 4
+
+		section#alignment.layout__section.grid__item-sm--12
+			h1.h2 #[a(href='#alignment') Alignment]
+			h3.h5.text--muted .grid--align-start
+
+			.grid.grid--example.grid--align-start
+				.grid__item-sm--3
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit magnam reiciendis, excepturi voluptatibus.
+				.grid__item-sm--9 9
+
+			h3.h5.text--muted .grid--align-center
+
+			.grid.grid--example.grid--align-center
+				.grid__item-sm--3
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit magnam reiciendis, excepturi voluptatibus.
+				.grid__item-sm--9 9
+
+			h3.h5.text--muted .grid--align-end
+
+			.grid.grid--example.grid--align-end
+				.grid__item-sm--3
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit magnam reiciendis, excepturi voluptatibus.
+				.grid__item-sm--9 9
+
+			h3.h5.text--muted .grid--align-stretch
+
+			.grid.grid--example.grid--align-stretch
+				.grid__item-sm--3
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit magnam reiciendis, excepturi voluptatibus.
+				.grid__item-sm--9 9
+
+		section#justify.layout__section.grid__item-sm--12
+			h1.h2 #[a(href='#justify') Justify]
+			h3.h5.text--muted .grid--justify-start
+
+			.grid.grid--example.grid--justify-start
+				.grid__item-sm--3 3
+				.grid__item-sm--3 3
+
+			h3.h5.text--muted .grid--justify-center
+
+			.grid.grid--example.grid--justify-center
+				.grid__item-sm--3 3
+				.grid__item-sm--3 3
+
+			h3.h5.text--muted .grid--justify-end
+
+			.grid.grid--example.grid--justify-end
+				.grid__item-sm--3 3
+				.grid__item-sm--3 3
+
+			h3.h5.text--muted .grid--justify-around
+
+			.grid.grid--example.grid--justify-around
+				.grid__item-sm--3 3
+				.grid__item-sm--3 3
+			.grid.grid--example.grid--justify-around
+				.grid__item-sm--3 3
+				.grid__item-sm--3 3
+				.grid__item-sm--3 3
+
+			h3.h5.text--muted .grid--justify-between
+
+			.grid.grid--example.grid--justify-between
+				.grid__item-sm--3 3
+				.grid__item-sm--3 3
+			.grid.grid--example.grid--justify-between
+				.grid__item-sm--3 3
+				.grid__item-sm--3 3
+				.grid__item-sm--3 3
+
+		section#ordering.layout__section.grid__item-sm--12
+			h1.h2 #[a(href='#ordering') Ordering]
+			h3.h5.text--muted .grid__item-xx--first
+
+			.grid.grid--example
+				.grid__item-sm--3 1
+				.grid__item-sm--3 2
+				.grid__item-sm--3 3
+				.grid__item-sm--3.grid__item-sm--first 4 (first)
+
+			h3.h5.text--muted .grid__item-xx--last
+
+			.grid.grid--example
+				.grid__item-sm--3.grid__item-sm--last 1 (last)
+				.grid__item-sm--3 2
+				.grid__item-sm--3 3
+				.grid__item-sm--3 4
+
+			h2.h4 #[a(href='#row') Row]
+			h3.h5.text--muted .grid--row
+
+			.grid.grid--example.grid--row
+				.grid__item-sm--3 1
+				.grid__item-sm--3 2
+				.grid__item-sm--3 3
+				.grid__item-sm--3 4
+
+			h3.h5.text--muted .grid--row-reverse
+
+			.grid.grid--example.grid--row-reverse
+				.grid__item-sm--3 1
+				.grid__item-sm--3 2
+				.grid__item-sm--3 3
+				.grid__item-sm--3 4
+
+			h2.h4 #[a(href='#column') Column]
+			h3.h5.text--muted .grid--column
+
+			.grid.grid--example.grid--column
+				.grid__item-sm--3 1
+				.grid__item-sm--3 2
+				.grid__item-sm--3 3
+				.grid__item-sm--3 4
+
+			h3.h5.text--muted .grid--column-reverse
+
+			.grid.grid--example.grid--column-reverse
+				.grid__item-sm--3 1
+				.grid__item-sm--3 2
+				.grid__item-sm--3 3
+				.grid__item-sm--3 4
+
+		footer.layout__footer.grid__item-sm--12.text--center.ui
+			p Created by #[a(href='http://acauamontiel.com.br', target='_blank', title='Acauã Montiel') Acauã Monteil] with #[a(href='http://stylus-lang.com', target='_blank', title='Stylus') Stylus] using #[a(href='http://mantis-stack.github.io/mantis-ui/', target='_blank', title='Mantis UI') Mantis UI]

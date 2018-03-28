@@ -1,0 +1,448 @@
+/*
+ * Forms Config
+ */
+
+$form-disabled-opacity = .75
+$form-field-padding = 5px
+$form-field-color = $color.midnight-blue
+$form-field-background = $color.white
+$form-field-border = 2px solid $color.silver
+$form-field-border-radius = $mantis.ui.radius.default
+$form-field-transition = $transition.time.fast
+$form-field-focus-border-color = $color.asbestos
+$form-field-group-addon = alpha($color.black, 50%)
+
+$form-field-small-padding = 0 5px
+$form-field-large-padding = 8px
+$form-field-giant-padding = 8px
+
+$form-checkbox-size = 20px
+$form-checkbox-margin = 0 10px 0 0
+$form-checkbox-color = $color.white
+$form-checkbox-background = $form-field-background
+$form-checkbox-border = $form-field-border
+$form-checkbox-border-radius = $mantis.ui.radius.default
+$form-checkbox-transition = $form-field-transition
+$form-checkbox-focus-border-color = $form-field-focus-border-color
+$form-checkbox-checked-border-color = $form-checkbox-focus-border-color
+
+$form-checkbox-small-size = 15px
+$form-checkbox-large-size = 25px
+$form-checkbox-giant-size = 30px
+
+$form-radio-border-radius = 50%
+$form-radio-checked-border-width = 6px
+
+$form-range-thumb-size = 20px
+$form-range-thumb-background = $form-field-background
+$form-range-thumb-border = $form-field-border
+$form-range-thumb-transition = $form-field-transition
+$form-range-focus-thumb-border-color = $color.concrete
+
+$form-range-thumb-small-size = 15px
+$form-range-thumb-large-size = 25px
+$form-range-thumb-giant-size = 30px
+
+$form-range-track-height = 2px
+$form-range-track-background = $color.silver
+$form-range-track-transition = $form-field-transition
+$form-range-focus-track-background = $form-range-focus-thumb-border-color
+
+$form = {
+	field: {
+		sizes: {
+			small: {
+				padding: $form-field-small-padding,
+				font-size: $font-size-small
+			},
+			default: {
+				padding: $form-field-padding
+			},
+			large: {
+				padding: $form-field-large-padding,
+				font-size: $font-size-large
+			},
+			giant: {
+				padding: $form-field-giant-padding,
+				font-size: $font-size-xxlarge
+			}
+		},
+		styles: {
+			default: {
+				default: {
+					color: 'normal',
+					border-color: 'normal'
+				},
+				focus: {
+					color: 'highlight',
+					border-color: 'highlight'
+				}
+			},
+			quiet: {
+				default: {
+					border-color: transparent
+				},
+				focus: {
+					border-color: transparent
+				}
+			},
+			fussy: {
+				default: {
+					background: transparent
+				},
+				focus: {
+					background: ('normal' alpha .15),
+					border-color: 'highlight'
+				}
+			}
+		}
+	},
+	checkbox: {
+		sizes: {
+			small: {
+				size: $form-checkbox-small-size
+			},
+			default: {
+				size: $form-checkbox-size
+			}
+			large: {
+				size: $form-checkbox-large-size
+			},
+			giant: {
+				size: $form-checkbox-giant-size
+			}
+		},
+		styles: {
+			default: {
+				default: {
+					border-color: 'normal'
+				},
+				focus: {
+					border-color: 'highlight'
+				}
+			}
+		}
+	},
+	range: {
+		sizes: {
+			small: {
+				size: $form-range-thumb-small-size
+			},
+			default: {
+				size: $form-range-thumb-size
+			}
+			large: {
+				size: $form-range-thumb-large-size
+			},
+			giant: {
+				size: $form-range-thumb-giant-size
+			}
+		},
+		styles: {
+			default: {
+				default: {
+					thumb: {
+						border-color: 'normal'
+					},
+					track: {
+						background: 'normal'
+					}
+				},
+				focus: {
+					thumb: {
+						border-color: 'highlight'
+					},
+					track: {
+						background: 'highlight'
+					}
+				}
+			}
+		}
+	}
+}
+
+/*
+ * Forms Styles
+ */
+
+// Define state
+form-set-state($theme, $style, $state, $obj)
+	for $prop, $val in $obj
+		if length($val) is 3
+			$c = $themes[$theme][$val[0]]
+			$f = $val[1]
+			$p = $val[2]
+			{$prop} $f($c, $p)
+		else if typeof($val) is 'string'
+			$c = $themes[$theme][$val]
+			{$prop} $c
+		else
+			{$prop} $val
+
+field-set-state($theme, $style, $state)
+	form-set-state($theme, $style, $state, $form.field.styles[$style][$state])
+
+checkbox-set-state($theme, $style, $state)
+	form-set-state($theme, $style, $state, $form.checkbox.styles[$style][$state])
+
+range-set-state($theme, $style, $state)
+	+range-thumb()
+		form-set-state($theme, $style, $state, $form.range.styles[$style][$state].thumb)
+
+	+range-track()
+		form-set-state($theme, $style, $state, $form.range.styles[$style][$state].track)
+
+// Define theme
+field-theme($theme, $style)
+	field-set-state($theme, $style, 'default')
+
+	&:focus
+		field-set-state($theme, $style, 'focus')
+
+checkbox-theme($theme, $style)
+	checkbox-set-state($theme, $style, 'default')
+
+	&:focus
+		checkbox-set-state($theme, $style, 'focus')
+
+	&:checked
+		checkbox-set-state($theme, $style, 'checked')
+
+range-theme($theme, $style)
+	range-set-state($theme, $style, 'default')
+
+	&:focus
+		range-set-state($theme, $style, 'focus')
+
+.form
+	&__group
+		@extends .p
+
+	&__label
+		cursor pointer
+
+	&__field-group
+		position relative
+		display flex
+		align-items stretch
+
+		&__addon
+		.bt
+		.form__field-text
+			&:not(:first-child):not(:last-child)
+				border-radius 0
+				border-left-width 0
+				border-right-width 0
+
+			&:first-child
+				border-right-width 0
+				border-top-right-radius 0
+				border-bottom-right-radius 0
+
+			&:last-child
+				border-left-width 0
+				border-top-left-radius 0
+				border-bottom-left-radius 0
+
+		&__addon
+			padding $form-field-padding ($form-field-padding * 2)
+			vertical-align middle
+			color $form-field-group-addon
+			border $form-field-border
+			background $form-field-border[2]
+			border-radius $form-field-border-radius
+			cursor default
+
+	&__field-text
+		display block
+		width 100%
+		padding $form-field-padding
+		line-height inherit
+		color $form-field-color
+		background $form-field-background
+		border $form-field-border
+		border-radius $form-field-border-radius
+		transition $form-field-transition
+
+		&:focus
+			border-color $form-field-focus-border-color
+
+		&[disabled]
+			opacity $form-disabled-opacity
+			cursor not-allowed
+			pointer-events none
+
+	&__field-longtext
+		@extends .form__field-text
+
+	// Sizes
+	for $size in $form.field.sizes
+		&__field--{$size}
+			for $prop, $val in $form.field.sizes[$size]
+				{$prop} $val
+
+	// Styles
+	for $style in $form.field.styles
+		&__field--{$style}
+			field-theme 'default' $style
+
+	// Themes
+	for $theme in $themes
+		&__field--{$theme}
+			field-theme $theme 'default'
+
+			for $style in $form.field.styles
+				&.form__field--{$style}
+					field-theme $theme $style
+
+
+	&__combobox
+		position relative
+
+		&:after
+			content '▼'
+			position absolute
+			top 50%
+			right 10px
+			font-size 10px
+			transform translateY(-50%)
+			pointer-events none
+
+	&__select
+		@extends .form__field-text
+
+	&__checkbox
+		position relative
+		display inline-block
+		size $form-checkbox-size
+		margin $form-checkbox-margin
+		vertical-align middle
+		color $form-checkbox-color
+		background $form-checkbox-background
+		border $form-checkbox-border
+		border-radius $form-checkbox-border-radius
+		transition $form-checkbox-transition
+
+		&:after
+			content '✔'
+			position center
+			opacity 0
+			transform translate(-50%, -50%) scale(0)
+			transition $form-checkbox-transition
+
+		&:focus
+			border-color $form-checkbox-focus-border-color
+
+		&:checked
+			border-width ($form-checkbox-size / 2)
+
+			&:after
+				opacity 1
+				transform translate(-50%, -50%) scale(1)
+
+		&[disabled]
+			opacity $form-disabled-opacity
+			cursor not-allowed
+			pointer-events none
+
+		// Sizes
+		for $size in $form.checkbox.sizes
+			$border = $form.checkbox.sizes[$size].size / 2
+
+			&--{$size}
+				for $prop, $val in $form.checkbox.sizes[$size]
+					{$prop} $val
+
+				&:checked
+					border-width $border
+
+		// Styles
+		for $style in $form.checkbox.styles
+			&--{$style}
+				checkbox-theme 'default' $style
+
+		// Themes
+		for $theme in $themes
+			&--{$theme}
+				checkbox-theme $theme 'default'
+
+				for $style in $form.checkbox.styles
+					&.form__checkbox--{$style}
+					&.form__radio--{$style}
+						checkbox-theme $theme $style
+
+	&__radio
+		@extends .form__checkbox
+		border-radius $form-radio-border-radius
+
+		&:after
+			content none
+
+		&:checked
+			border-width $form-radio-checked-border-width
+
+	&__range
+		range-thumb-top($size)
+			return (($size / 2) * -1) + ($form-range-track-height / 2)
+
+		width 100%
+		height $form-range-thumb-size
+		appearance none
+
+		&:focus
+			+range-thumb()
+				border-color $form-range-focus-thumb-border-color
+
+			+range-track()
+				background $form-range-focus-track-background
+
+		+range-thumb()
+			position relative
+			top range-thumb-top($form-range-thumb-size)
+			size $form-range-thumb-size
+			background $form-range-thumb-background
+			border $form-range-thumb-border
+			border-radius 50%
+			box-sizing border-box
+			transition $form-range-thumb-transition
+			appearance none
+
+		+range-track()
+			position relative
+			height $form-range-track-height
+			background $form-range-track-background
+			transition $form-range-track-transition
+			appearance none
+
+		// Sizes
+		for $size in $form.range.sizes
+			$s = $form.range.sizes[$size].size
+			&--{$size}
+				+range-thumb()
+					top range-thumb-top($s)
+					size $s
+
+		// Styles
+		for $style in $form.range.styles
+			&--{$style}
+				range-theme 'default' $style
+
+		// Themes
+		for $theme in $themes
+			&--{$theme}
+				range-theme $theme 'default'
+
+				for $style in $form.range.styles
+					&.form__checkbox--{$style}
+					&.form__radio--{$style}
+						range-theme $theme $style
+
+	&__color
+		@extends .form__field-text
+
+		+color-swatch-wrapper()
+			padding 0
+
+		+color-swatch()
+			border none
+			border-radius $form-field-border-radius
