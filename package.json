@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:mantisjs/mantis-grid.git"
+    "url": "git@github.com:acauamontiel/mantis-grid.git"
   },
   "keywords": [
     "grid",
@@ -19,7 +19,7 @@
   "author": "Acauã Montiel <contato@acauamontiel.com.br>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mantisjs/mantis-grid/issues"
+    "url": "https://github.com/acauamontiel/mantis-grid/issues"
   },
-  "homepage": "https://github.com/mantisjs/mantis-grid"
+  "homepage": "https://github.com/acauamontiel/mantis-grid"
 }
