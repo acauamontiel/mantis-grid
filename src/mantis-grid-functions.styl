@@ -46,7 +46,7 @@ grid-justify($justify = start)
 	if ($justify is start) || ($justify is end)
 		$justify = unquote('flex-' + $justify)
 
-	if ($justify is between) || ($justify is around)
+	if ($justify is between) || ($justify is around) || ($justify is evenly)
 		$justify = unquote('space-' + $justify)
 
 	justify-content $justify
