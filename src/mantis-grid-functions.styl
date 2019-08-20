@@ -41,7 +41,7 @@ grid-align($align = start)
 	align-items $align if $align in $alignments
 
 grid-justify($justify = start)
-	$justifications = flex-start flex-end center space-araound space-between
+	$justifications = flex-start flex-end center space-around space-between space-evenly
 
 	if ($justify is start) || ($justify is end)
 		$justify = unquote('flex-' + $justify)

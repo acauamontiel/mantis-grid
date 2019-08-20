@@ -41,6 +41,9 @@ generate-grid-and-modifiers($prefix)
 		&{$mantis.grid.separator}justify-between
 			grid-justify(between)
 
+		&{$mantis.grid.separator}justify-evenly
+			grid-justify(evenly)
+
 generate-grid($prefix = '', $media-querie = false, $width = $mantis.grid.width, $fluid = $mantis.grid.fluid)
 	unless $prefix is ''
 		$prefix = '-' + $prefix
