@@ -1,14 +1,16 @@
 {
-  "name": "mantis-ui",
-  "version": "0.34.3",
+  "name": "mantis-grid-page",
+  "version": "0.0.1",
   "description": "The fastest and most up-to-date modular front-end framework",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp",
+    "build": "gulp build",
+    "dist": "gulp dist"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:mantis-stack/mantis-ui.git"
+    "url": "git@github.com:acauamontiel/mantis-ui.git"
   },
   "keywords": [
     "template",
@@ -46,7 +48,7 @@
     "gulp-uglify": "^2.1.2",
     "gulp-watch": "^4.3.11",
     "mantis-equalizr": "^1.4.0",
-    "mantis-grid": "^0.4.4",
+    "mantis-grid": "^0.5.1",
     "mantis-layers": "^0.1.0",
     "mantis-querist": "^0.5.0",
     "nib": "^1.1.2",
