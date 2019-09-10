@@ -44,12 +44,12 @@ generate-grid-and-modifiers($prefix)
 		&{$mantis.grid.separator}justify-evenly
 			grid-justify(evenly)
 
-generate-grid($prefix = '', $media-querie = false, $width = $mantis.grid.width, $fluid = $mantis.grid.fluid)
+generate-grid($prefix = '', $media-query = false, $width = $mantis.grid.width, $fluid = $mantis.grid.fluid)
 	unless $prefix is ''
 		$prefix = '-' + $prefix
 
-	if $media-querie
-		@media $media-querie
+	if $media-query
+		@media $media-query
 			generate-grid-and-modifiers($prefix)
 	else
 		generate-grid-and-modifiers($prefix)
@@ -82,12 +82,12 @@ generate-grid-item($gutter, $prefix)
 			.{$mantis.grid.offset-classname}{$prefix}{$mantis.grid.separator}{i}
 				grid-offset(i)
 
-generate-grid-items($gutter = false, $prefix = '', $media-querie = false)
+generate-grid-items($gutter = false, $prefix = '', $media-query = false)
 	unless $prefix is ''
 		$prefix = '-' + $prefix
 
-	if $media-querie
-		@media $media-querie
+	if $media-query
+		@media $media-query
 			generate-grid-item($gutter, $prefix)
 	else
 		generate-grid-item($gutter, $prefix)
@@ -96,10 +96,10 @@ grid-init()
 	generate-grid()
 
 	for i in $mantis.grid.breakpoints
-		if i.media-querie is null
+		if i.media-query is null
 			generate-grid(i.prefix)
 			generate-grid-items(i.gutter, i.prefix)
 		else
-			generate-grid(i.prefix, i.media-querie)
-			generate-grid-items(i.gutter, i.prefix, i.media-querie)
+			generate-grid(i.prefix, i.media-query)
+			generate-grid-items(i.gutter, i.prefix, i.media-query)
 
