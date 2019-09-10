@@ -33,7 +33,7 @@ grid-direction($direction = row)
 	flex-direction $direction if $direction in $directions
 
 grid-align($align = start)
-	$alignments = flex-start flex-end center strectch
+	$alignments = flex-start flex-end center stretch
 
 	if ($align is start) || ($align is end)
 		$align = unquote('flex-' + $align)
