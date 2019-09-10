@@ -20,6 +20,6 @@ Documentation isn't ready, but you can see some examples [here](http://mantis-st
 License
 -------
 
-© 2015 - 2016 [Acauã Montiel](http://acauamontiel.com.br)
+© 2015 - 2019 [Acauã Montiel](http://acauamontiel.com.br)
 
 [MIT License](http://acaua.mit-license.org/)
